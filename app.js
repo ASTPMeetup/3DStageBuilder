@@ -5,6 +5,14 @@ let createCube = () => {
     let geometry = new THREE.BoxGeometry(1,1,1);
     let material = new THREE.MeshBasicMaterial({color: 0x00a1cb});
     cube = new THREE.Mesh(geometry, material);
+
+    // wireframe
+    var geo = new THREE.EdgesGeometry( cube.geometry );
+    var mat = new THREE.LineBasicMaterial( { color: 0x000000, linewidth: 4 } );
+    var wireframe = new THREE.LineSegments( geo, mat );
+    wireframe.renderOrder = 1; // make sure wireframes are rendered 2nd
+    cube.add( wireframe );
+
     scene.add(cube);
 }
 
